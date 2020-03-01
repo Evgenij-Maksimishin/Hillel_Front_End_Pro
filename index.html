@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_5</title>
+</head>
+
+<body>
+    <script>
+        
+        "use strict"
+
+
+        function area(r) {
+            let a = Math.PI * r * r;
+            return "The area is: " + a;
+        }
+        
+        console.log(area(50))
+
+
+        function peri(r) {
+            let p = 2 * Math.PI * r;
+            return "The perimeter is: " + p;
+        }
+        
+        console.log(peri(50))
+
+
+        function average(a, b) {
+            let avg = (a + b) / 2;
+            return "Average is: " + avg;
+        }
+
+        console.log(average(100, 100));
+
+
+        function calc(a, b, action) {
+            let res = 0;
+
+            switch (action) {
+                case "/":
+                    res = a / b;
+                    break;
+                case "+":
+                    res = a + b;
+                    break;
+                case "*":
+                    res = a * b;
+                    break;
+                case "-":
+                    res = a - b;
+                    break;
+                default:
+                    res = "Operation not known"
+            }
+            
+            return res;
+        }
+
+        console.log(calc(3, 9, "+"));
+
+
+    </script>
+</body>
+
+</html>
