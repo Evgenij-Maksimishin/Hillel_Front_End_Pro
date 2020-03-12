@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_6</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        let date = (new Date).getFullYear();
+        let students = [
+
+            {
+                name: 'Elizabeth',
+                birthDate: 2002,
+                gender: 'female'
+            },
+
+            {
+                name: 'John',
+                birthDate: 1997,
+                gender: 'male'
+            },
+
+            {
+                name: 'Emma',
+                birthDate: 2000,
+                gender: 'female'
+            },
+
+            {
+                name: 'Mark',
+                birthDate: 1995,
+                gender: 'male'
+            },
+
+            {
+                name: 'Sophia',
+                birthDate: 2001,
+                gender: 'female'
+            }
+        ];
+
+
+        function getAverageAge(students) {
+
+            let averageAge = 0;
+
+            for (let i = 0; i <= students.length - 1; i++) {
+                averageAge += date - students[i].birthDate;
+            }
+
+            return (averageAge / students.length);
+        }
+
+        console.log('The average age of students is: ' + getAverageAge(students));
+
+
+
+        function checkMostGender(students) {
+            let male = 0;
+            let female = 0;
+
+            for (let i = 0; i <= students.length - 1; i++) {
+
+                if (students[i].gender === 'male') {
+                    male = ++male;
+                } else {
+                    female = ++female;
+                }
+            }
+
+            if (male > female) {
+                return ('Males are: ' + male);
+            } else {
+                return ('Females are: ' + female);
+            }
+
+
+        }
+
+        console.log(checkMostGender(students));
+
+
+
+
+        let arr = [1, 2, 3, 4, 5, 6];
+        let brr = clone(arr);
+
+        function clone(arr) {
+            let cloneArray = [];
+            for (let i = 0; i <= arr.length - 1; i++) {
+                cloneArray[i] = arr[i];
+            }
+            return cloneArray;
+        }
+
+        console.log(brr);
+        brr[0] = 42;
+        console.log(brr);
+        console.log(arr);
+
+
+
+
+        let arr2 = [1, 2, 3, 4, 5, 6];
+
+        function filter(arr2, cb) {
+
+            let temp = [];
+
+            for (let i = 0; i <= arr2.length - 1; i++) {
+
+                let newIndex = temp.length;
+
+                if (cb(arr2[i])) {
+                    temp[newIndex] = arr2[i];
+                }
+
+            }
+
+            return temp;
+
+        }
+
+        const res = filter(arr2, function (isEven) {
+
+            return isEven % 2 === 0;
+        });
+
+        console.log(res);
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
