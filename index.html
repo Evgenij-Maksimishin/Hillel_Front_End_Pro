@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_7</title>
+</head>
+
+<body>
+    <script>
+        'use script'
+
+        let car1 = {
+
+            carMake: 'Mercedes-Benz'
+
+        };
+
+        let car2 = {};
+
+        function copy(car2, car1) {
+
+            for (let key in car1) {
+
+                car2[key] = car1[key];
+
+            }
+
+            return car2;
+        }
+
+        console.log(car1);
+        console.log(copy(car2, car1));
+        console.log(car2);
+
+
+
+
+        function getNumberOfEven(n) {
+
+            let sumNumbersOfEven = 0;
+
+            for (let i = 0; i < String(n); i++) {
+
+                if (String(n)[i] % 2 === 0) {
+                    sumNumbersOfEven++;
+                }
+            }
+
+            return sumNumbersOfEven;
+        }
+
+        console.log(getNumberOfEven(223344));
+        console.log(getNumberOfEven(111));
+
+
+
+
+
+        function sumAll() {
+            var result = 0;
+
+            for (var i = 0; i < arguments.length; i++) {
+                result += arguments[i];
+            }
+
+            return result;
+        }
+
+        console.log(sumAll());
+        console.log(sumAll(1));
+        console.log(sumAll(1, 2));
+
+
+
+
+
+        function mathMinMax() {
+            
+            let min = arguments[0];
+            let max = arguments[1];
+
+            for (let i = 0; i < arguments.length; i++) {
+
+                if (max < arguments[i]) {
+                    max = arguments[i];
+                } else if (min > arguments[i]) {
+                    min = arguments[i];
+                }
+            }
+
+            let minMax = [min, max];
+            
+            return minMax;
+        }
+
+        console.log(mathMinMax(1, 2, 3, 4, 5)); 
+        console.log(mathMinMax(3, 4, 8, 5, 7, 2, 3, 0));
+
+
+    </script>
+</body>
+
+</html>
