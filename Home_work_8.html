@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_8</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+
+        const arr = [-246, 753, -468, 475, -683, 476, -583, 746, -581];
+
+
+        let result = arr.reduce(function (sum, current) {
+            return sum + current;
+        }, 0);
+
+        console.log(result);
+
+
+        let positiveArr = arr.filter(function (number) {
+            return number < 0;
+        });
+
+        console.log(positiveArr);
+
+
+        let arrSort = arr.sort(function (a, b) {
+            return a - b
+        });
+
+        console.log(arrSort);
+
+
+        let arrSort2 = arr.sort(function (a, b) {
+            return b - a
+        });
+
+        console.log(arrSort2);
+
+
+        let divideByTwo = arr.map(function (a) {
+            return a / 2
+        });
+
+        console.log(divideByTwo);
+
+
+
+
+
+
+        const str = "12, 42, 63, 56, 122, 17, 117, 25, 645, 722, 964";
+
+
+        let makeNumbers = str.split(', ').map(function (a) {
+            return Number(a)
+        });
+
+        console.log(makeNumbers);
+
+
+        let makeEvenNumbers = makeNumbers.filter(function (a) {
+            return a % 2 === 0;
+        });
+
+        console.log(makeEvenNumbers);
+
+
+
+
+
+
+        const carModel = [
+            ['carMake', 'Bentley'],
+            ['country', 'England'],
+            ['year', 2020]
+        ];
+
+
+        function toObject(arr) {
+            let rv = {};
+            for (let i = 0; i < arr.length; ++i)
+                rv[carModel[i][0]] = carModel[i][1];
+            return rv;
+        }
+
+        let carObj = toObject(carModel)
+        console.log(carObj);
+
+
+
+        function toArr(objOfCarModel) {
+            let makeArr = [];
+            for (let key in objOfCarModel) {
+                let tmp = [];
+                tmp.push(key);
+                tmp.push(objOfCarModel[key]);
+
+                makeArr.push(tmp);
+            }
+            return makeArr;
+        }
+
+        console.log(toArr(carObj));
+
+
+
+    </script>
+</body>
+
+</html>
