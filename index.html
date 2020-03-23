@@ -54,8 +54,38 @@
         console.log(fromArraytoObject_2(keys))
 
 
+        
+        function fromArraytoObject_3(arr) {
+           
+            let rv = {};
+            
+            for (let i = 0; i < arr.length; ++i)
+               
+                Object.defineProperties(rv, {
+                   
+                    value: {
+                        value: 42,
+                    },
 
+                    value2: {
+                        value: true,
+                    },
 
+                    value3: {
+                        value: 'Hello',
+                    }
+
+                });
+
+            return rv;
+        }
+
+        console.log("Третий способ (Object.defineProperties) :")
+        console.log(fromArraytoObject_3(keys));
+        
+        
+        
+        
 
         console.log('Cравнение двух объектов на идентичность их свойств:')
 
