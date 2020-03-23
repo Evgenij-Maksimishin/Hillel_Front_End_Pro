@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_9</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        console.log('Функция принимающая двумерный массив, которая дожна вернуть объект:')
+
+        let keys = [
+
+            ['value', 42, true, false, false],
+
+            ['value2', true, false, false, false],
+
+            ['value3', 'Hello', true, true, true]
+
+        ];
+
+
+
+        function fromArraytoObject(arr) {
+            let rv = {};
+            for (let i = 0; i < arr.length; ++i)
+                rv[keys[i][0]] = keys[i][1];
+            return rv;
+        }
+
+        let createObject = fromArraytoObject(keys);
+
+        console.log("Первый способ:")
+        console.log(createObject);
+
+
+
+        function fromArraytoObject_2(arr) {
+            let obj = {};
+
+            arr.forEach(function (el) {
+                obj[el[0]] = el[1];
+            });
+
+            return obj;
+
+        };
+
+        console.log("Второй  способ (forEach) :")
+        console.log(fromArraytoObject_2(keys))
+
+
+
+
+
+        console.log('Cравнение двух объектов на идентичность их свойств:')
+
+        let obj1 = {
+
+            value: 42,
+
+            value2: true
+
+        }
+
+
+        let obj2 = {
+
+            value: 42,
+
+            value2: true
+
+        }
+
+
+        function compareObj(obj1, obj2) {
+
+            if (JSON.stringify(obj1) === JSON.stringify(obj2)) {
+                return true;
+            }
+
+            else if (JSON.stringify(obj1) !== JSON.stringify(obj2)) {
+                return false;
+            }
+        }
+
+        console.log(compareObj(obj1, obj2));
+
+
+
+
+    </script>
+</body>
+
+</html>
