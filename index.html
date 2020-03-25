@@ -23,9 +23,35 @@
 
         ];
 
+    
+        function createObject(keys) {
+            
+            let obj = {};
 
+            keys.forEach(function (el) {
+                
+                Object.defineProperty(obj, el[0], {
+                    
+                    value: el[1],
+                    enumerable: el[2],
+                    writable: el[3],
+                    configurable: el[4]
 
-        function fromArraytoObject(arr) {
+                });
+            
+            });
+
+            return obj;
+        }
+
+        console.log(createObject(keys));
+        
+        
+        
+        
+        
+
+       /* function fromArraytoObject(arr) {
             let rv = {};
             for (let i = 0; i < arr.length; ++i)
                 rv[keys[i][0]] = keys[i][1];
@@ -81,7 +107,7 @@
         }
 
         console.log("Третий способ (Object.defineProperties) :")
-        console.log(fromArraytoObject_3(keys));
+        console.log(fromArraytoObject_3(keys)); */
         
         
         
