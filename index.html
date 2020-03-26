@@ -34,7 +34,7 @@
 
             array.forEach(function (el) {
 
-                if (el.constructor === Array) {
+                if (Array.isArray) {
 
                     tamp += "<li>" + generateList(el) + "</li>";
 
