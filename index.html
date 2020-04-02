@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_Work_11</title>
+
+    <style>
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0 auto;
+        }
+
+        .container {
+            display: flex;
+            width: 600px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .boxes {
+            width: 100px;
+            height: 100px;
+            margin-left: 15px;
+            border: 1px solid black;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="boxes" style="background-color: grey"></div>
+        <div class="boxes" style="background-color: grey"></div>
+        <div class="boxes" style="background-color: grey"></div>
+        <div class="boxes" style="background-color: grey"></div>
+        <div class="boxes" style="background-color: gray"></div>
+    </div>
+
+
+    <div class="box shadow radius"></div>
+
+
+    <script>
+        'use strict'
+
+
+        /// Task 1 --- "this" Way 
+
+        const $boxes = document.querySelectorAll('.boxes');
+
+        $boxes.forEach(function (box) {
+            box.addEventListener('click', function () {
+
+                const bgColor = this.style.backgroundColor;
+
+                switch (bgColor) {
+
+                    case 'grey':
+                        this.style.backgroundColor = 'blue';
+                        break;
+
+                    case 'blue':
+                        this.style.backgroundColor = 'green';
+                        break;
+
+                    case 'green':
+                        this.style.backgroundColor = 'yellow';
+                        break;
+
+                    default:
+                        this.style.backgroundColor = 'blue';
+
+                }
+            });
+
+            box.addEventListener('click', function () {
+
+                const $container = document.querySelector('.container');
+
+                $container.append(this);
+            });
+
+        });
+
+
+
+        /// Task 1 ---  "el.target" Way
+
+        /*  $boxes.forEach(function (box) {
+              box.addEventListener('click', changeColor);
+              box.addEventListener('click', toSwapBoxes);
+          });
+  
+          function changeColor(el) {
+  
+              const bgColor = el.target.style.backgroundColor;
+  
+              switch (bgColor) {
+  
+                  case 'grey':
+                      el.target.style.backgroundColor = 'blue';
+                      break;
+  
+                  case 'blue':
+                      el.target.style.backgroundColor = 'green';
+                      break;
+  
+                  case 'green':
+                      el.target.style.backgroundColor = 'yellow';
+                      break;
+  
+                  default:
+                      el.target.style.backgroundColor = 'blue';
+  
+              }
+  
+  
+          }
+  
+          function toSwapBoxes(el) {
+  
+              const $container = document.querySelector('.container');
+  
+              $container.append(el.target);
+  
+          }; */
+
+
+
+
+        /// Task 2
+
+        const $div = document.querySelector('.box')
+
+        function toggleClass(el, classOfEl) {
+
+            const classes = el.className.split(' ');
+
+            const flag = classes.some(function (el) {
+
+                return el === classOfEl;
+
+            });
+
+            if (flag) {
+
+                const classIndex = classes.findIndex(function (el) {
+
+                    return el === classOfEl;
+
+                });
+
+                classes.splice(classIndex, 1);
+
+            }
+
+            else {
+
+                classes.push(classOfEl);
+
+            }
+
+            return el.className = classes.join(' ');
+        }
+
+        console.log(toggleClass($div, 'border'));
+        console.log(toggleClass($div, 'border'));
+
+
+
+        /// Task 2 --- Second Way
+
+        /*function toggleClass(el2, classOfEl2) {
+
+            if (el2.classList.contains(classOfEl2)) {
+
+                el2.classList.remove(classOfEl2);
+
+            }
+
+            else {
+
+                el2.classList.add(classOfEl2);
+
+            }
+
+            return el2.className;
+
+        }
+
+        console.log(toggleClass($div, 'border'));
+        console.log(toggleClass($div, 'border'));*/
+
+    </script>
+
+
+
+</body>
+
+</html>
