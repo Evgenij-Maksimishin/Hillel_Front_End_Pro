@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_11</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0 auto;
+        }
+
+        .container {
+            width: 1250px;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .block_1,
+        .block_2,
+        .block_3,
+        .block_4,
+        .block_5 {
+            position: relative;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid tomato;
+        }
+
+        .zero {
+            display: flex;
+            justify-content: center;
+            padding-top: 45%;
+        }
+
+
+        .plus {
+            position: absolute;
+            top: 110px;
+            left: 35%;
+            cursor: pointer;
+            width: 25px;
+        }
+
+        .minus {
+            position: absolute;
+            top: 110px;
+            right: 35%;
+            cursor: pointer;
+            width: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="block_1">
+
+            <div class="box">
+                <span class="zero">0</span>
+            </div>
+
+            <button class="plus">+</button>
+            <button class="minus">-</button>
+        </div>
+
+        <div class="block_2">
+
+            <div class="box">
+
+                <span class="zero">0</span>
+
+            </div>
+
+            <button class="plus">+</button>
+            <button class="minus">-</button>
+        </div>
+
+        <div class="block_3">
+
+            <div class="box">
+
+                <span class="zero">0</span>
+
+            </div>
+
+            <button class="plus">+</button>
+            <button class="minus">-</button>
+        </div>
+
+        <div class="block_4">
+
+            <div class="box">
+
+                <span class="zero">0</span>
+
+            </div>
+
+            <button class="plus">+</button>
+            <button class="minus">-</button>
+        </div>
+
+        <div class="block_5">
+
+            <div class="box">
+
+                <span class="zero">0</span>
+
+            </div>
+
+            <button class="plus">+</button>
+            <button class="minus">-</button>
+        </div>
+    </div>
+
+    <div class="" id="tableWrap"></div>
+
+    <script>
+
+        'use strict'
+
+        /// Task 1
+
+        const $zeroes = document.querySelectorAll('.zero');
+
+        $zeroes.forEach(function (zero) {
+
+
+            const $plus = document.querySelectorAll('.plus:nth-child(2)');
+
+            $plus.forEach(function (plusOne) {
+
+                plusOne.addEventListener('click', function () {
+
+                    zero.innerHTML = ++zero.innerHTML;
+
+                });
+            });
+
+
+            const $minus = document.querySelectorAll('.minus:nth-child(3)');
+
+            $minus.forEach(function (minusOne) {
+
+                minusOne.addEventListener('click', function () {
+
+                    zero.innerHTML = --zero.innerHTML;
+
+                });
+            });
+
+        });
+
+
+
+        /// Task 2
+
+
+        const url = ' https://ithillel.ua/?utm_source=%D0%9A%D0%B0%D1%80%D0%BB%20%D1%83%20%D0%9A%D0%BB%D0%B0%D1%80%D1%8B%20%D1%83%D0%BA%D1%80%D0%B0%D0%BB%20%D0%BA%D0%BE%D1%80%D0%B0%D0%BB%D0%BB%D1%8B&utm_medium=,%20%D0%B0%20%D0%9A%D0%BB%D0%B0%D1%80%D0%B0%20%D1%83%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D1%83%D0%BA%D1%80%D0%B0%D0%BB%D0%B0%20%D0%BA%D0%BB%D0%B0%D1%80%D0%BD%D0%B5%D1%82.&utm_campaign=%D0%9A%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D0%B0%20%D0%9A%D0%BB%D0%B0%D1%80%D0%B0%20%D0%BA%D0%B0%D0%B2%D0%B0%D0%BB%D0%B5%D1%80%D0%B0&utm_term=%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%B0%D1%80%D0%B0%D0%BB%D0%B0&utm_content=%D0%B7%D0%B0%20%D0%BA%D1%80%D0%B0%D0%B6%D1%83%20%D0%BA%D0%BE%D1%80%D0%B0%D0%BB%D0%BB%D0%BE%D0%B2';
+
+
+        function makeObjFromQuery(url) {
+
+            let obj = {};
+
+            let queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+            if (queryString) {
+
+                queryString = queryString.split('#')[0];
+
+                let arr = queryString.split('&');
+
+                for (let i = 0; i < arr.length; i++) {
+
+                    let keyForArr = arr[i].split('=');
+
+                    obj[keyForArr[0]] = decodeURIComponent(keyForArr[1]);
+                }
+
+                return obj;
+
+            }
+
+        }
+
+        console.log(makeObjFromQuery(url));
+
+
+
+        function printData(obj) {
+
+            let table = '<table style="margin: 0 auto; padding-top:100px";>';
+
+            for (let key in obj) {
+
+                table += '<tr>';
+
+                table += `<td style="border:1px solid green; padding:5px;">${key}</td>`;
+                table += `<td style="border:1px solid green; padding:5px;">${obj[key]}</td>`;
+
+                table += '</tr>';
+            }
+
+
+            table += '</table>';
+
+            return table;
+        }
+
+        document.getElementById("tableWrap").innerHTML = printData(makeObjFromQuery(url));
+
+
+
+    </script>
+</body>
+
+</html>
