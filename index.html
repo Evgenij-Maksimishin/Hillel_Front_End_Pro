@@ -5,57 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home_work_12</title>
+
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0 auto;
-        }
-
         .container {
-            width: 1250px;
             display: flex;
-            justify-content: center;
-            margin: 0 auto;
-        }
-
-        .block_1,
-        .block_2,
-        .block_3,
-        .block_4,
-        .block_5 {
-            position: relative;
         }
 
         .box {
-            width: 200px;
-            height: 200px;
-            border: 1px solid tomato;
-        }
-
-        .zero {
+            width: 100px;
+            height: 100px;
+            border: 1px solid salmon;
+            float: left;
             display: flex;
+            align-content: center;
             justify-content: center;
-            padding-top: 45%;
+            flex-wrap: wrap;
+            cursor: pointer;
         }
 
-
-        .plus {
-            position: absolute;
-            top: 110px;
-            left: 35%;
-            cursor: pointer;
-            width: 25px;
+        .box span {
+            width: 100%;
+            text-align: center;
         }
 
-        .minus {
-            position: absolute;
-            top: 110px;
-            right: 35%;
-            cursor: pointer;
-            width: 25px;
+        .box button {
+            width: 40%;
         }
     </style>
 </head>
@@ -64,143 +38,110 @@
 
     <div class="container">
 
-        <div class="block_1">
+        <div class="box">
 
-            <div class="box">
-                <span class="zero">0</span>
-            </div>
+            Val:<span class="box-content">0</span>
 
-            <button class="plus">+</button>
-            <button class="minus">-</button>
+            <button type="button" data-action="plus">+</button>
+
+            <button type="button" data-action="minus">-</button>
+
         </div>
 
-        <div class="block_2">
+        <div class="box">
 
-            <div class="box">
+            Val:<span class="box-content">0</span>
 
-                <span class="zero">0</span>
+            <button type="button" data-action="plus">+</button>
 
-            </div>
+            <button type="button" data-action="minus">-</button>
 
-            <button class="plus">+</button>
-            <button class="minus">-</button>
         </div>
 
-        <div class="block_3">
+        <div class="box">
 
-            <div class="box">
+            Val:<span class="box-content">0</span>
 
-                <span class="zero">0</span>
+            <button type="button" data-action="plus">+</button>
 
-            </div>
+            <button type="button" data-action="minus">-</button>
 
-            <button class="plus">+</button>
-            <button class="minus">-</button>
         </div>
 
-        <div class="block_4">
+        <div class="box">
 
-            <div class="box">
+            Val:<span class="box-content">0</span>
 
-                <span class="zero">0</span>
+            <button type="button" data-action="plus">+</button>
 
-            </div>
+            <button type="button" data-action="minus">-</button>
 
-            <button class="plus">+</button>
-            <button class="minus">-</button>
         </div>
 
-        <div class="block_5">
+        <div class="box">
 
-            <div class="box">
+            Val:<span class="box-content">0</span>
 
-                <span class="zero">0</span>
+            <button type="button" data-action="plus">+</button>
 
-            </div>
+            <button type="button" data-action="minus">-</button>
 
-            <button class="plus">+</button>
-            <button class="minus">-</button>
         </div>
+
     </div>
 
-    <div class="" id="tableWrap"></div>
+    <div class="table_wrap"></div>
 
     <script>
+        'use stricrt'
 
-        'use strict'
+        /// Task 1 
 
-        /// Task 1
+        const $boxes = document.querySelectorAll('.box');
 
-        const $zeroes = document.querySelectorAll('.zero');
+        $boxes.forEach(function (box) {
 
-        $zeroes.forEach(function (zero) {
-
-
-            const $plus = document.querySelectorAll('.plus');
-
-            $plus.forEach(function (plusOne) {
-
-                plusOne.addEventListener('click', function () {
-
-                    zero.innerHTML = ++zero.innerHTML;
-
+            box.querySelector('[data-action="plus"]')
+                .addEventListener('click', function () {
+                    this.closest('.box').querySelector('.box-content').textContent++
+                    //this.parentNode.firstElementChild.textContent++
                 });
-            });
 
-
-            const $minus = document.querySelectorAll('.minus');
-
-            $minus.forEach(function (minusOne) {
-
-                minusOne.addEventListener('click', function () {
-
-                    zero.innerHTML = --zero.innerHTML;
-
+            box.querySelector('[data-action="minus"]')
+                .addEventListener('click', function () {
+                    this.closest('.box').querySelector('.box-content').textContent--
+                    //this.parentNode.firstElementChild.textContent--
                 });
-            });
 
         });
 
 
 
-        /// Task 2
+        ///Task 2
+
+        const url = 'https://ithillel.ua/?utm_source=%D0%9A%D0%B0%D1%80%D0%BB%20%D1%83%20%D0%9A%D0%BB%D0%B0%D1%80%D1%8B%20%D1%83%D0%BA%D1%80%D0%B0%D0%BB%20%D0%BA%D0%BE%D1%80%D0%B0%D0%BB%D0%BB%D1%8B&utm_medium=,%20%D0%B0%20%D0%9A%D0%BB%D0%B0%D1%80%D0%B0%20%D1%83%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D1%83%D0%BA%D1%80%D0%B0%D0%BB%D0%B0%20%D0%BA%D0%BB%D0%B0%D1%80%D0%BD%D0%B5%D1%82.&utm_campaign=%D0%9A%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D0%B0%20%D0%9A%D0%BB%D0%B0%D1%80%D0%B0%20%D0%BA%D0%B0%D0%B2%D0%B0%D0%BB%D0%B5%D1%80%D0%B0&utm_term=%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%B0%D1%80%D0%B0%D0%BB%D0%B0&utm_content=%D0%B7%D0%B0%20%D0%BA%D1%80%D0%B0%D0%B6%D1%83%20%D0%BA%D0%BE%D1%80%D0%B0%D0%BB%D0%BB%D0%BE%D0%B2';
 
 
-        const url = ' https://ithillel.ua/?utm_source=%D0%9A%D0%B0%D1%80%D0%BB%20%D1%83%20%D0%9A%D0%BB%D0%B0%D1%80%D1%8B%20%D1%83%D0%BA%D1%80%D0%B0%D0%BB%20%D0%BA%D0%BE%D1%80%D0%B0%D0%BB%D0%BB%D1%8B&utm_medium=,%20%D0%B0%20%D0%9A%D0%BB%D0%B0%D1%80%D0%B0%20%D1%83%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D1%83%D0%BA%D1%80%D0%B0%D0%BB%D0%B0%20%D0%BA%D0%BB%D0%B0%D1%80%D0%BD%D0%B5%D1%82.&utm_campaign=%D0%9A%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D0%B0%20%D0%9A%D0%BB%D0%B0%D1%80%D0%B0%20%D0%BA%D0%B0%D0%B2%D0%B0%D0%BB%D0%B5%D1%80%D0%B0&utm_term=%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%B0%D1%80%D0%B0%D0%BB%D0%B0&utm_content=%D0%B7%D0%B0%20%D0%BA%D1%80%D0%B0%D0%B6%D1%83%20%D0%BA%D0%BE%D1%80%D0%B0%D0%BB%D0%BB%D0%BE%D0%B2';
-
-
-        function makeObjFromQuery(url) {
+        function getQParamsFromUrl(querySrt) {
 
             let obj = {};
 
-            let queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+            querySrt.slice(21).split('&')
+                .map(function (el) {
+                    return el.split('=');
+                })
+                .forEach(function (el) {
+                    obj[el[0]] = decodeURIComponent(el[1]);
+                });
 
-            if (queryString) {
+            return obj;
 
-                queryString = queryString.split('#')[0];
-
-                let arr = queryString.split('&');
-
-                for (let i = 0; i < arr.length; i++) {
-
-                    let keyForArr = arr[i].split('=');
-
-                    obj[keyForArr[0]] = decodeURIComponent(keyForArr[1]);
-                }
-
-                return obj;
-
-            }
-
-        }
-
-        console.log(makeObjFromQuery(url));
-
+        };
 
 
         function printData(obj) {
 
-            let table = '<table style="margin: 0 auto; padding-top:100px";>';
+            let table = '<table style="padding-top:100px";>';
 
             for (let key in obj) {
 
@@ -212,17 +153,16 @@
                 table += '</tr>';
             }
 
-
             table += '</table>';
 
             return table;
-        }
+        };
 
-        document.getElementById("tableWrap").innerHTML = printData(makeObjFromQuery(url));
-
-
+        console.log(getQParamsFromUrl(url));
+        document.querySelector(".table_wrap").innerHTML = printData(getQParamsFromUrl(url));
 
     </script>
 </body>
 
 </html>
+        
