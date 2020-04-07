@@ -54,7 +54,7 @@
                 averageAge += date - students[i].birthDate;
             }
 
-            return (averageAge / students.length);
+            return Number(averageAge / students.length).toFixed(0);
         }
 
         console.log('The average age of students is: ' + getAverageAge(students));
