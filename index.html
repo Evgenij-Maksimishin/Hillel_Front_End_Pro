@@ -10,8 +10,32 @@
 <body>
     <script>
         'use script'
+        
+        let obj1 = {
+            a: 5,
+            b:10,
+            x:1
+        }
 
-        let car1 = {
+        let obj2 = {
+            x:5,
+            y:'New'
+
+        }
+
+
+        function copy (origin, target) {
+
+            for (let key in origin) {
+                target[key] = origin[key]
+            }
+
+            return target
+        }
+        copy(obj1,obj2)
+        console.log(obj2)
+
+        /*let car1 = {
 
             carMake: 'Mercedes-Benz'
 
@@ -32,7 +56,7 @@
 
         console.log(car1);
         console.log(copy(car2, car1));
-        console.log(car2);
+        console.log(car2);*/
 
 
          function getEvenNumbers(n) {
