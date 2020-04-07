@@ -35,9 +35,24 @@
         console.log(car2);
 
 
+         function getEvenNumbers(n) {
+            let count = 0;
+            let str = String(n)
+            
 
+            for (let i = 0; i <= str.length; i++) {
 
-        function getNumberOfEven(n) {
+                if (str[i] % 2 === 0) {
+                    count++
+                }
+
+            }
+            return count
+        }
+
+        console.log(getEvenNumbers(223344))
+
+        /*function getNumberOfEven(n) {
 
             let sumNumbersOfEven = 0;
 
@@ -52,7 +67,7 @@
         }
 
         console.log(getNumberOfEven(223344));
-        console.log(getNumberOfEven(111));
+        console.log(getNumberOfEven(111));*/
 
 
 
