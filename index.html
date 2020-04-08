@@ -109,14 +109,21 @@
 
         function toArr(objOfCarModel) {
             let makeArr = [];
-            for (let key in objOfCarModel) {
+            
+             for (let key in obj1) {
+                newArray.push([key, obj1[key]]);
+            }
+
+            return newArray;
+            
+            /*for (let key in objOfCarModel) {
                 let tmp = [];
                 tmp.push(key);
                 tmp.push(objOfCarModel[key]);
 
                 makeArr.push(tmp);
             }
-            return makeArr;
+            return makeArr*/
         }
 
         console.log(toArr(carObj));
