@@ -68,6 +68,8 @@
         let makeNumbers = str.split(', ').map(function (a) {
             return Number(a)
         });
+        
+        // const makeNumbers = str.split(',').map((numbers) => Number(numbers));
 
         console.log(makeNumbers);
 
@@ -75,10 +77,13 @@
         let makeEvenNumbers = makeNumbers.filter(function (a) {
             return a % 2 === 0;
         });
-
+        
         console.log(makeEvenNumbers);
 
-
+        /*const newArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const numbersOfEven = newArray.filter((n) => n % 2 === 0);
+        console.log(numbersOfEven)*/
+        
 
 
 
