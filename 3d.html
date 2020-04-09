@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS_3D</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="three.js"></script>
+    <script src="OrbitControls.js"></script>
+    <script>
+        'use strict'
+
+        const scene = new THREE.Scene();
+
+        const fov = 70;
+        const aspectRatio = window.innerWidth / window.innerHeight;
+        const near = 0.1;
+        const far = 1000;
+
+        const camera = new THREE.PerspectiveCamera(fov, aspectRatio, near, far);
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor('yellow');
+        document.body.prepend(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+
+        const geometry = new THREE.BoxGeometry(1, 1, 1)
+        const material = new THREE.MeshPhongMaterial({ color: '#6e6e6e' });
+        const cube = new THREE.Mesh(geometry, material);
+
+        const sphere = new THREE.Mesh(new THREE.SphereGeometry(5, 5, 32), new THREE.MeshPhongMaterial({ color:  '#6e6e6e' }));
+
+        cube.scale.set(5, 5, 5);
+        sphere.position.x = 5;
+        cube.position.x = -5;
+
+        scene.add(cube);
+        scene.add(sphere); 
+        controls.update();
+
+
+        camera.position.z = 10;
+
+        const color = 'red';
+        const intensity = 10;
+        const light = new THREE.DirectionalLight(color, intensity);
+        light.position.set(-1, 4, 4);
+        scene.add(light);
+
+
+
+        function aniamate() {
+
+            requestAnimationFrame(aniamate);
+
+            renderer.render(scene, camera);
+
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            sphere.rotation.x += 0.01;
+            sphere.rotation.y += 0.01;
+
+            controls.update();
+        }
+
+        aniamate();
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS_2D</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #canvas {
+            border: 3px solid tomato;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <canvas id="canvas" width="400" height="300"></canvas>
+
+    <script>
+        'use strict'
+
+        const $canvas = document.querySelector('#canvas');
+        const ctx = canvas.getContext('2d');
+
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 4;
+
+        function drawCircle(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI, true);
+            ctx.stroke();
+        };
+
+        drawCircle(200, 240, 50)
+        drawCircle(200, 150, 40)
+        drawCircle(200, 80, 30)
+
+
+
+        function drawMiniCircle(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI, true);
+            ctx.fillStyle = 'black';
+            ctx.fill();
+        };
+
+        drawMiniCircle(190, 75, 4);
+        drawMiniCircle(210, 75, 4);
+        drawMiniCircle(200, 130, 4);
+        drawMiniCircle(200, 150, 4);
+        drawMiniCircle(200, 170, 4);
+
+
+
+        function toMakeSmileForSmowMan(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI, true);
+            ctx.fillStyle = 'black';
+            ctx.fill();
+        };
+
+        toMakeSmileForSmowMan(187, 92, 2);
+        toMakeSmileForSmowMan(189, 94, 2);
+        toMakeSmileForSmowMan(192, 95, 2);
+        toMakeSmileForSmowMan(195, 95, 2);
+        toMakeSmileForSmowMan(197, 95, 2);
+        toMakeSmileForSmowMan(200, 95, 2);
+        toMakeSmileForSmowMan(203, 95, 2);
+        toMakeSmileForSmowMan(205, 95, 2);
+        toMakeSmileForSmowMan(208, 95, 2)
+        toMakeSmileForSmowMan(210, 94, 2);
+        toMakeSmileForSmowMan(213, 92, 2);
+
+
+
+
+        ctx.beginPath();
+        ctx.arc(200, 85, 4, 0, 2 * Math.PI, true);
+        ctx.fillStyle = 'orange';
+        ctx.fill();
+
+    </script>
+</body>
+
+</html>
