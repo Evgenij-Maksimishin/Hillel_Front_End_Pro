@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_13</title>
+    <style>
+        .container {
+            width: 1300px;
+            margin: 0 auto;
+        }
+
+        [contenteditable="true"] {
+            min-height: 30px;
+            font-size: 20px;
+            line-height: 30px;
+            margin-bottom: 30px;
+            border: 1px solid;
+            width: 500px;
+        }
+
+        #button_table {
+            text-align: center;
+            border: 1px solid;
+            padding: 17px;
+            width: 94px;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .button_box,
+        .button_backspace {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid;
+            background-color: rgba(0, 0, 255, 0.336);
+            color: white;
+            margin-left: 5px;
+        }
+
+        div,
+        select {
+            margin-bottom: 15px;
+        }
+
+        #form_currency_converter {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class=box>
+            <div class="content" contenteditable="true"></div>
+            <button class="button_backspace">Backspace</button>
+            <button class="button_box">Clean Out</button>
+        </div>
+        <div class="myTable"></div>
+    </div>
+
+
+
+    <form id="form_currency_converter" action="">
+        <fieldset>
+
+            <div>
+                <input id="buy" name="buy_or_sell" type="radio" value="buy" checked>
+                <label for="buy">Buy</label>
+
+                <input id="sell" name="buy_or_sell" type="radio" value="sell">
+                <label for="sell">To Sell</label>
+            </div>
+
+            <span>From</span>
+            <select name="from_currency" id="from_currency">
+                <option value="USD" selected>USD</option>
+                <option value="EUR">EUR</option>
+                <option value="UAN">UAN</option>
+            </select>
+
+            <span>To</span>
+            <select name="to_currency" id="to_currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="UAN" selected>UAN</option>
+            </select>
+
+            <div>
+                <input id="amount" name="amount" type="number" placeholder="Enter amount">
+                <label for="amount">Enter amount</label>
+
+            </div>
+
+            <div>
+                <input id="result" name="result" type="number" disabled>
+                <label for="result">Result</label>
+            </div>
+
+            <div>
+                <button id="calculate" type="submit">Calculate</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <script>
+        'use strict'
+
+        /// Task 1
+
+        const $myTable = document.querySelector('.myTable');
+        const $content = document.querySelector('.content');
+
+        const alphabetArr = 'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,CapsLock,Space,!,",Backspace'.split(',');
+
+        let countCL = 0;
+
+        function generateTableData(arr) {
+
+            let htmlTable = `<table>`;
+
+            htmlTable += `<tr>`;
+
+            arr.forEach(function (el, ind) {
+
+                if (ind % 13 === 0) {
+                    htmlTable += `</tr><tr><td><button id="button_table"; data-action="letter">${el}</button></td>`;
+                } else {
+                    htmlTable += `<td><button id="button_table"; data-action="letter">${el}</button></td>`;
+                }
+
+            });
+
+            htmlTable += `</tr>`;
+
+            htmlTable += `</table>`;
+
+            return htmlTable;
+
+        };
+
+        $myTable.innerHTML = generateTableData(alphabetArr);
+
+        document.querySelectorAll('[data-action="letter"]')
+            .forEach(function (el) {
+                el.addEventListener('click', function () {
+
+                    if (this.textContent === 'CapsLock') {
+                        countCL++;
+                    }
+
+                    else if (this.textContent === 'Space') {
+                        $content.innerHTML = $content.innerHTML + ' ';
+                    }
+
+                    else if (this.textContent === 'Backspace') {
+                        $content.innerHTML = $content.innerHTML.slice(0, -1);
+
+                    }
+
+                    else {
+
+                        if (countCL % 2 === 0) {
+                            $content.innerHTML += this.textContent.toLowerCase();
+
+                        } else {
+                            $content.innerHTML += this.textContent.toUpperCase();
+                        }
+
+                    }
+
+                });
+
+            });
+
+
+        document.querySelector('.button_backspace').addEventListener('click', function () {
+            $content.innerHTML = $content.innerHTML.slice(0, -1);
+        });
+
+        document.querySelector('.button_box').addEventListener('click', function () {
+            $content.innerHTML = '';
+        });
+
+
+        /// Task 2
+
+        const currencies = {
+
+            UAN: {
+                sell: 1,
+                buy: 1,
+            },
+
+            USD: {
+                sell: 28,
+                buy: 27
+            },
+
+            EUR: {
+                sell: 30,
+                buy: 29
+            }
+
+        };
+
+        document.querySelector('#form_currency_converter')
+            .addEventListener('submit', function (formElements) {
+                formElements.preventDefault();
+                //console.dir(this)
+
+                const buy_or_sell = this.elements.buy_or_sell.value;
+                const from_currency = this.elements.from_currency.value;
+                const to_currency = this.elements.to_currency.value;
+                const input_amount = this.elements.amount.value;
+                const result = this.elements.result;
+                // const calculate = this.elements.calculate;
+
+                if (from_currency === to_currency) {
+                    result.value = input_amount;
+                }
+
+                if (from_currency !== 'UAN' && to_currency === 'UAN') {
+                    result.value = input_amount * currencies[from_currency][buy_or_sell];
+                }
+
+                if (from_currency !== 'UAN' && to_currency !== 'UAN') {
+                    result.value = input_amount * currencies[from_currency][buy_or_sell] / currencies[to_currency][buy_or_sell];
+                }
+
+                if (from_currency === 'UAN' && to_currency !== 'UAN') {
+                    result.value = input_amount / currencies[to_currency][buy_or_sell];
+                }
+
+            });
+
+
+    </script>
+</body>
+
+</html>
