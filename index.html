@@ -5,35 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home_work_15</title>
-    <style>
-        .wrapper {
-            margin: 60px auto;
-            width: 80%;
-            max-width: 500px;
-        }
-
-        h2 {
-            background: #FF6766;
-            border-radius: 5px 5px 0 0;
-            margin: 10px 0 0 0;
-            color: #FFFFF7;
-            font-size: 20px;
-            padding: 5px;
-            text-align: center;
-        }
-
-        h2:hover {
-            cursor: pointer;
-            background: #FF7877;
-        }
-
-        section {
-            background: #FFFFF7;
-            border-radius: 0 0 5px 5px;
-            padding: 5px;
-            color: #60646D;
-        }
-    </style>
 </head>
 
 <body>
@@ -85,7 +56,6 @@
         $container.prepend($table);
 
 
-
         function createTable(row, cols) {
 
             $table = '<table>';
@@ -132,7 +102,36 @@
 
         /// Tast 2 
 
-        $(document).ready(function () {
+
+        jQuery(function () {     // $(document).ready(function(){});
+
+            $('.wrapper').css({
+                'margin': '60px auto',
+                'width': '80%',
+                'max-width': '500px'
+            });
+
+            $('h2').css({
+                'background': '#FF6766',
+                'border-radius': '5px 5px 0 0',
+                'margin': '10px 0 0 0',
+                'color': '#FFFFF7',
+                'font-size': '20px',
+                'padding': '5px',
+                'text-align': 'center'
+            });
+
+            $('h2').hover(function () {
+                $(this).css('background', '#FF7877');
+                $(this).css('cursor', 'pointer')
+            });
+
+            $('section').css({
+                'background': '#FFFFF7',
+                'border- radius': '0 0 5px 5px',
+                'padding': '5px',
+                'color': '#60646D'
+            });
 
             $('.wrapper>section').not(this).hide();
 
@@ -144,7 +143,7 @@
                 if (findSection.is(':visible')) {
                     findSection.slideUp('fast');
                 }
-                
+
                 else {
                     findWrapper.find('>section').slideUp('fast');
                     findSection.slideDown('fast');
@@ -152,6 +151,7 @@
             });
 
         });
+
 
 
     </script>
