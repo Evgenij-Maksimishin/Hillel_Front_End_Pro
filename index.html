@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_15</title>
+    <style>
+        .wrapper {
+            margin: 60px auto;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        h2 {
+            background: #FF6766;
+            border-radius: 5px 5px 0 0;
+            margin: 10px 0 0 0;
+            color: #FFFFF7;
+            font-size: 20px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        h2:hover {
+            cursor: pointer;
+            background: #FF7877;
+        }
+
+        section {
+            background: #FFFFF7;
+            border-radius: 0 0 5px 5px;
+            padding: 5px;
+            color: #60646D;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <h2>First</h2>
+        <section>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, nostrum, sunt. Vel quis voluptatem
+                culpa, sint maiores distinctio rerum perspiciatis esse nemo nesciunt amet, ipsam nulla consectetur
+                facere
+                placeat eveniet magni libero dolor, cum? Minus quasi dolorum maiores non perferendis.
+            </p>
+        </section>
+
+        <h2>Second</h2>
+        <section>
+            <p>
+                Officiis voluptas accusantium cupiditate officia! Asperiores eligendi tempore blanditiis, unde
+                excepturi voluptas velit, inventore nostrum necessitatibus nisi officia, sed corporis rerum maxime.
+                Blanditiis officiis sed veniam incidunt maiores, perspiciatis error rerum laboriosam pariatur
+                consequatur.
+                Placeat dolorum aspernatur quidem error soluta.
+            </p>
+        </section>
+
+        <h2>Third</h2>
+        <section>
+            <p>
+                Voluptas vitae pariatur numquam deserunt eveniet dolores tempora, delectus quo voluptatum provident.
+                Nostrum, laborum, quis. Omnis debitis inventore eveniet magnam odio, sequi repudiandae illum autem culpa
+                similique aperiam ratione quo quaerat molestiae in dele2iti fugiat, suscipit est? Veniam, recusandae,
+                consequatur!
+            </p>
+        </section>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        'use strict'
+
+
+        const $container = document.createElement('div');
+        $container.className = 'container';
+        document.body.append($container);
+
+        let $table = document.createElement('table');
+        $container.prepend($table);
+
+
+
+        function createTable(row, cols) {
+
+            $table = '<table>';
+
+            for (let i = 1; i <= row; i++) {
+
+                let tr = '<tr>';
+
+                for (let j = 1; j <= cols; j++) {
+
+                    tr += `<td style="border: 1px solid brown; padding: 25px;">${Math.ceil(Math.random() * 100)}</td>`;
+
+                }
+
+                tr += '</tr>';
+
+                $table += tr;
+
+            }
+            $table += '</table>'
+
+            return $table
+        }
+
+        $container.innerHTML = createTable(3, 3);
+
+
+
+        const $inputTable = document.createElement("input");
+        $inputTable.className = 'inputTable';
+        $inputTable.setAttribute('type', 'text');
+        $inputTable.style = 'margin-left: 19px; margin-top: 10px';
+        $container.append($inputTable);
+
+
+        document.querySelector("table").addEventListener('click', function (el) {
+            const $el = el.target;
+            if ($el.tagName === 'TD') {
+                $inputTable.value = $el.textContent
+            }
+        });
+
+
+
+        /// Tast 2 
+
+        $(document).ready(function () {
+
+            $('.wrapper>section').not(this).hide();
+
+            $('.wrapper>h2').click(function () {
+
+                let findSection = $(this).next();
+                let findWrapper = $(this).closest('.wrapper');
+
+                if (findSection.is(':visible')) {
+                    findSection.slideUp('fast');
+                }
+                
+                else {
+                    findWrapper.find('>section').slideUp('fast');
+                    findSection.slideDown('fast');
+                }
+            });
+
+        });
+
+
+    </script>
+</body>
+
+</html>
