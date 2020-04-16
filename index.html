@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_17</title>
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid salmon;
+            float: left;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            cursor: pointer;
+        }
+
+        .box span {
+            width: 100%;
+            text-align: center;
+        }
+
+        .box button {
+            width: 40%;
+        }
+
+        .container_2 {
+            display: flex;
+            margin: 0 auto  ;
+            width: 600px;
+            margin-top: 100px;
+        }
+
+        .boxes {
+            width: 100px;
+            height: 100px;
+            margin-left: 15px;
+            border: 1px solid royalblue;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="box">
+
+            Val:<span class="box-content">0</span>
+
+            <button type="button" data-action="plus">+</button>
+
+            <button type="button" data-action="minus">-</button>
+
+        </div>
+
+        <div class="box">
+
+            Val:<span class="box-content">0</span>
+
+            <button type="button" data-action="plus">+</button>
+
+            <button type="button" data-action="minus">-</button>
+
+        </div>
+
+        <div class="box">
+
+            Val:<span class="box-content">0</span>
+
+            <button type="button" data-action="plus">+</button>
+
+            <button type="button" data-action="minus">-</button>
+
+        </div>
+
+        <div class="box">
+
+            Val:<span class="box-content">0</span>
+
+            <button type="button" data-action="plus">+</button>
+
+            <button type="button" data-action="minus">-</button>
+
+        </div>
+
+        <div class="box">
+
+            Val:<span class="box-content">0</span>
+
+            <button type="button" data-action="plus">+</button>
+
+            <button type="button" data-action="minus">-</button>
+
+        </div>
+
+    </div>
+
+    <div class="container_2">
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+
+        'use stricrt'
+
+        /// Task 1 
+
+        $(".box").on("click", "button", function (el) {
+
+
+            if ($(this).attr('data-action') === 'plus') {
+
+                this.closest('.box').firstElementChild.textContent++;
+                //this.parentNode.firstElementChild.textContent++;
+
+            }
+
+            else if ($(this).attr('data-action') === 'minus') {
+
+                this.parentNode.firstElementChild.textContent--;
+                //this.closest('.box').firstElementChild.textContent++;
+
+            }
+
+        });
+
+
+
+        /// Task 2
+
+        $(".boxes").click(function () {
+
+            const bgColor = this.style.backgroundColor;
+
+            switch (bgColor) {
+
+                case '':
+
+                    $(this).css('background-color', 'blue');
+                    break;
+
+                case 'blue':
+
+                    $(this).css('background-color', 'green');
+                    break;
+
+                case 'green':
+
+                    $(this).css('background-color', 'yellow');
+                    break;
+
+                default:
+
+                    $(this).css('background-color', 'blue');
+
+            }
+
+            $(this).appendTo('.container_2');
+
+        });
+
+    </script>
+</body>
+
+</html>
