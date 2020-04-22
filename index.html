@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        const person = {
+            name: 'Elizabeth'
+        }
+
+        function info(phone, email) {
+            console.log(`Name: ${this.name}\nNumber of Phone: ${phone}\nEmail: ${email}`);
+        }
+
+        //info.bind(person)('12345', 'xxx-xxx-xxx@gmail.com');
+        //info.bind(person, '12345')('xxx-xxx-xxx@gmail.com');
+        //info.bind(person, '12345', 'xxx-xxx-xxx@gmail.com')();
+
+        /*function bind(fn, context, ...rest) {
+            return fn.bind(context, ...rest)
+        }*/
+
+        function bind(fn, context, ...rest) {
+
+            return function (...arg) {
+
+                return fn.call(context, ...rest.concat(arg));
+
+            }
+
+        }
+
+        bind(info, person)('12345', 'xxx-xxx-xxx@gmail.com');
+        bind(info, person, '12345')('xxx-xxx-xxx@gmail.com');
+        bind(info, person, '12345', 'xxx-xxx-xxx@gmail.com')();
+
+
+
+        /*let test = {
+            things: 'Thing:',
+            numbers: [1, 2, 3]
+        };
+
+        function showThingsForEach() {
+
+            this.numbers.map(function (elements) {
+
+                console.log(this.things, elements * 10);
+
+            }.bind(this));
+        }
+
+        showThingsForEach.bind(test)();*/
+
+        let test = {
+            things: 'Thing:',
+            numbers: [1, 2, 3],
+            showThingsForEach: function () {
+                this.numbers.map(function (elements) {
+                    console.log(this.things, elements * 10);
+                }.bind(this));
+            }
+        }
+
+        test.showThingsForEach();
+
+
+
+    </script>
+</body>
+
+</html>
