@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_19</title>
+    <style>
+        .fb_box {
+            display: flex;
+            justify-content: center;
+        }
+
+        .vk_box {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .fb_content,
+        .vk_content {
+            min-height: 20px;
+            font-size: 20px;
+            line-height: 20px;
+            border: 1px solid;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="fb_box">
+        <button class="fb">FB Like</button>
+        <div class="fb_content" contenteditable="true"></div>
+        <button class="fb_clear-out">Clear Out</button>
+    </div>
+
+    <div class="vk_box">
+        <button class="vk">VK Like</button>
+        <div class="vk_content" contenteditable="true"></div>
+        <button class="vk_clear-out">Clear Out</button>
+    </div>
+
+
+    <script>
+
+        'use strict'
+
+
+
+
+        /// Task 1
+
+        function sum(number) {
+
+            let temp = number;
+
+            sum = function () {
+
+                let arg = arguments[0] ? arguments[0] : 0;
+
+                return temp += arg;
+
+            };
+
+            return sum();
+
+        }
+
+        console.log(sum(3));
+        console.log(sum(5));
+        console.log(sum(20));
+
+
+
+
+        /// Task 2
+
+        function createCounter(start = 0, step = 10) {
+
+            let callNumber = start;
+
+            return function () {
+
+                let returnValue = callNumber;
+
+                callNumber += step;
+
+                return returnValue;
+            }
+
+        }
+
+        const fbCounter = createCounter(100, 200);
+        const vkCounter = createCounter(1000, 2000);
+
+
+        const $fbContent = document.querySelector('.fb_content');
+        const $fbClearOut = document.querySelector('.fb_clear-out');
+        const $fbButton = document.querySelector('.fb');
+
+        $fbButton.addEventListener('click', () => {
+            $fbContent.innerHTML = fbCounter();
+        });
+
+        $fbClearOut.addEventListener('click', () => {
+            $fbContent.innerHTML = '';
+        });
+
+
+
+        const $vkContent = document.querySelector('.vk_content');
+        const $vkClearOut = document.querySelector('.vk_clear-out');
+        const $vkButton = document.querySelector('.vk');
+
+        $vkButton.addEventListener('click', () => {
+            $vkContent.innerHTML = vkCounter();
+        });
+
+        $vkClearOut.addEventListener('click', () => {
+            $vkContent.innerHTML = '';
+        });
+
+
+
+        /// Task 3
+
+        function isPalindrome(number) {
+
+            let numberAux = number;
+            let reversedNumber = 0;
+
+            while (numberAux > 0) {
+
+                let rightDigit = Math.floor(numberAux % 10);
+                reversedNumber = reversedNumber * 10 + rightDigit;
+                numberAux = Math.floor(numberAux / 10);
+            }
+
+            if (number === reversedNumber) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        console.log(isPalindrome(525))
+
+
+    </script>
+</body>
+
+</html>
