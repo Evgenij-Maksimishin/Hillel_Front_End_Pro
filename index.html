@@ -127,8 +127,11 @@
 
         /// Task 3
 
-        function isPalindrome(number) {
+        function isPalindrome(number, reversedNumber) {
+            return number === reversedNumber;
+        }
 
+        function reverse(number) {
             let numberAux = number;
             let reversedNumber = 0;
 
@@ -138,16 +141,10 @@
                 reversedNumber = reversedNumber * 10 + rightDigit;
                 numberAux = Math.floor(numberAux / 10);
             }
-
-            if (number === reversedNumber) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return reversedNumber;
         }
 
-         function solve(number) {
+        function solve(number) {
             const reversed = reverse(number);
 
             if(isPalindrome(number, reversed)) {
