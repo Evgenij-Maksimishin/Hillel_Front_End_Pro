@@ -147,7 +147,17 @@
             }
         }
 
-        console.log(isPalindrome(525))
+         function solve(number) {
+            const reversed = reverse(number);
+
+            if(isPalindrome(number, reversed)) {
+                return number;
+            } 
+            else {
+                return solve(reversed + number);
+            }
+        }
+        console.log(solve(96));
 
 
     </script>
