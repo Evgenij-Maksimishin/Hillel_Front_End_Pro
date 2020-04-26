@@ -48,9 +48,7 @@
 
         'use strict'
 
-
-
-
+        
         /// Task 1
 
         function sum(number) {
@@ -78,7 +76,7 @@
 
         /// Task 2
 
-        function createCounter(start = 0, step = 10) {
+        function createCounter(start, step) {
 
             let callNumber = start;
 
@@ -93,8 +91,8 @@
 
         }
 
-        const fbCounter = createCounter(100, 200);
-        const vkCounter = createCounter(1000, 2000);
+        let fbCounter = createCounter(100, 200);
+        let vkCounter = createCounter(1000, 2000);
 
 
         const $fbContent = document.querySelector('.fb_content');
@@ -106,7 +104,8 @@
         });
 
         $fbClearOut.addEventListener('click', () => {
-            $fbContent.innerHTML = '';
+            fbCounter = createCounter(100, 200);
+            $fbContent.innerHTML = fbCounter();
         });
 
 
@@ -120,7 +119,8 @@
         });
 
         $vkClearOut.addEventListener('click', () => {
-            $vkContent.innerHTML = '';
+            vkCounter = createCounter(1000, 2000);
+            $vkContent.innerHTML = vkCounter();
         });
 
 
