@@ -63,6 +63,7 @@
         
         // Bind + Map
 
+        
         const arr = [1, 2, 3, 4, 5]
 
         const map = function (array, cb, thisArg) {
@@ -70,7 +71,9 @@
             const res = [];
 
             for (let i = 0; i < arr.length; i++) {
-                res.push(cb.call(thisArg || array[i], i, array))
+
+                res.push(cb.call(thisArg || array[i], array[i], i, array));
+
             };
 
             return res;
@@ -84,6 +87,7 @@
                 value: el ** 2
             }
         }, {});
+
 
         console.log(arrToSq);
         
