@@ -74,24 +74,102 @@
 
 
         /// Task 2
+        
+        // First Way
+        
+         /*function makeCounter(initialValue, step) {
+            let acc = initialValue;
 
-        function createCounter(start, step) {
+            function counter() {
+                return acc += step;
+            }
 
-            let callNumber = start;
+            counter.reset = function () {
+                acc = initialValue;
+                return acc;
+            }
 
-            return function () {
+            return counter;
+        }
 
-                let returnValue = callNumber;
+        const fbCounter = makeCounter(0, 1);
+        const vkCounter = makeCounter(5, 2.5);
 
-                callNumber += step;
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');
 
-                return returnValue;
+        console.log(fbCounter.reset(), 'reset');
+
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');
+        console.log(fbCounter(), 'fbCounter');*/
+        
+        
+        // Second Way
+        
+        /*function makeCounter(initialValue, step) {
+            let acc = initialValue;
+
+            return {
+                next() {
+                    return acc += step;
+                },
+                reset() {
+                    acc = initialValue;
+                    return acc;
+                }
             }
 
         }
 
-        let fbCounter = createCounter(100, 200);
-        let vkCounter = createCounter(1000, 2000);
+
+        const fbCounter = makeCounter(0, 1);
+        const vkCounter = makeCounter(5, 2.5);
+
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+
+        console.log(fbCounter.reset(), 'reset');
+
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+        console.log(fbCounter.next(), 'fbCounter');
+
+
+        console.log(vkCounter.next(), 'vkCounter');
+        console.log(vkCounter.next(), 'vkCounter');
+        console.log(vkCounter.next(), 'vkCounter');*/
+        
+        
+        
+        function makeCounter(initialValue, step) {
+
+            let acc = initialValue;
+
+            return {
+                next() {
+                    return acc += step;
+                },
+                reset() {
+                    acc = initialValue;
+                    return acc;
+                }
+            }
+
+        };
+
+        const fbCounter = makeCounter(0, 1);
+        const vkCounter = makeCounter(5, 5);
 
 
         const $fbContent = document.querySelector('.fb_content');
@@ -99,12 +177,11 @@
         const $fbButton = document.querySelector('.fb');
 
         $fbButton.addEventListener('click', () => {
-            $fbContent.innerHTML = fbCounter();
+            $fbContent.innerHTML = fbCounter.next();
         });
 
         $fbClearOut.addEventListener('click', () => {
-            fbCounter = createCounter(100, 200);
-            $fbContent.innerHTML = fbCounter();
+            $fbContent.innerHTML = fbCounter.reset();
         });
 
 
@@ -114,16 +191,15 @@
         const $vkButton = document.querySelector('.vk');
 
         $vkButton.addEventListener('click', () => {
-            $vkContent.innerHTML = vkCounter();
+            $vkContent.innerHTML = vkCounter.next();
         });
 
         $vkClearOut.addEventListener('click', () => {
-            vkCounter = createCounter(1000, 2000);
-            $vkContent.innerHTML = vkCounter();
+            $vkContent.innerHTML = vkCounter.reset();
         });
 
 
-
+        
         /// Task 3
 
         function isPalindrome(number, reversedNumber) {
