@@ -51,25 +51,24 @@
         
         /// Task 1
 
-        function sum(number) {
+          
+        function calcSum () {
+            
+            let acc = 0;
 
-            let temp = number;
+            return function(value) {
+                
+                return acc += value;
+                
+            }
+        };
 
-            sum = function () {
-
-                let arg = arguments[0] ? arguments[0] : 0;
-
-                return temp += arg;
-
-            };
-
-            return sum();
-
-        }
+        const sum = calcSum();
 
         console.log(sum(3));
         console.log(sum(5));
         console.log(sum(20));
+        
 
 
 
