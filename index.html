@@ -53,22 +53,22 @@
 
           
         function calcSum () {
-            
             let acc = 0;
 
             return function(value) {
-                
                 return acc += value;
-                
             }
         };
 
         const sum = calcSum();
+        const sum2 = calcSum();
 
         console.log(sum(3));
         console.log(sum(5));
         console.log(sum(20));
-        
+
+        console.log(sum2(10));
+        console.log(sum2(15));
 
 
 
