@@ -43,39 +43,50 @@
         bind(info, person, '12345')('xxx-xxx-xxx@gmail.com');
         bind(info, person, '12345', 'xxx-xxx-xxx@gmail.com')();
 
+        /*
+            const bind = function (fn, context) {
 
+            const necesseraryArgCount = 2;
+
+            const bindArg = Array.prototype.slice.call(arguments, necesseraryArgCount);
+
+            return function () {
+                const fnArg = Array.prototype.slice.call(arguments);
+                return fn.apply(context, bindArg.concat(fnArg))
+            }
+
+        };
+
+        console.log(bind(function () {}, {}, 'Java', 'Script'));
+        */
         
         
         // Bind + Map
 
-        
-        /*const test = {
-            things: 'Thing:',
-            numbers: [1, 2, 3]
-        };
+        const arr = [1, 2, 3, 4, 5]
 
-        function showThingsForEach() {
+        const map = function (array, cb, thisArg) {
 
-            this.numbers.map(function (elements) {
+            const res = [];
 
-                console.log(this.things, elements * 10);
+            for (let i = 0; i < arr.length; i++) {
+                res.push(cb.call(thisArg || array[i], i, array))
+            };
 
-            }.bind(this));
+            return res;
+
         }
 
-        showThingsForEach.bind(test)();*/
+        const arrToSq = map(arr, function (el, i) {
 
-        const test = {
-            things: 'Thing:',
-            numbers: [1, 2, 3],
-            showThingsForEach: function () {
-                this.numbers.map(function (elements) {
-                    console.log(this.things, elements * 10);
-                }.bind(this));
+            return {
+                index: i,
+                value: el ** 2
             }
-        }
+        }, {});
 
-        test.showThingsForEach();
+        console.log(arrToSq);
+        
 
 
 
