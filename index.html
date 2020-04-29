@@ -201,8 +201,22 @@
 
         
         /// Task 3
+        
+        function isPalindrome(number) {
+    
+            const reversedNumber = Number(String(number).split("").reverse().join(""));
 
-        function isPalindrome(number, reversedNumber) {
+            if (number === reversedNumber) {
+                return number;
+            }
+
+            return isPalindrome(number + reversedNumber);
+
+        }
+
+        console.log(isPalindrome(96));
+
+        /*function isPalindrome(number, reversedNumber) {
             return number === reversedNumber;
         }
 
@@ -229,7 +243,7 @@
                 return solve(reversed + number);
             }
         }
-        console.log(solve(96));
+        console.log(solve(96));*/
 
 
     </script>
