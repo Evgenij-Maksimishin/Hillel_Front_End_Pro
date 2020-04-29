@@ -74,7 +74,18 @@
         console.log(findVowels2('Java Script'));
         console.log(findVowels2('why'));
 
+        
+        // Third Way 
+        
+        function findVowels3(str3) {
+            const vowels3 = ['a', 'e', 'i', 'o', 'u'];
+            return str3.split('').filter(searchVowels => vowels3.includes(searchVowels)).length;
+        }
 
+        console.log(findVowels3('Java Script'));
+        console.log(findVowels3('why'));
+        
+        
 
         // Task 3
 
