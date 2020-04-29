@@ -5,249 +5,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home_work_19</title>
-    <style>
-        .fb_box {
-            display: flex;
-            justify-content: center;
-        }
-
-        .vk_box {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .fb_content,
-        .vk_content {
-            min-height: 20px;
-            font-size: 20px;
-            line-height: 20px;
-            border: 1px solid;
-            width: 100px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
-
-    <div class="fb_box">
-        <button class="fb">FB Like</button>
-        <div class="fb_content" contenteditable="true"></div>
-        <button class="fb_clear-out">Clear Out</button>
-    </div>
-
-    <div class="vk_box">
-        <button class="vk">VK Like</button>
-        <div class="vk_content" contenteditable="true"></div>
-        <button class="vk_clear-out">Clear Out</button>
-    </div>
-
-
     <script>
-
         'use strict'
 
-        
-        /// Task 1
 
-          
-        function calcSum () {
-            let acc = 0;
+        // Task 1
 
-            return function(value) {
-                return acc += value;
+        function fizzBuzz(number) {
+
+            for (let i = 1; i <= number; i++) {
+
+                if (i % 3 === 0 && i % 5 === 0) {
+                    console.log('FizzBuzz');
+                }
+
+                else if (i % 3 === 0) {
+                    console.log('Fizz');
+                }
+
+                else if (i % 5 === 0) {
+                    console.log('Buzz');
+                }
+
+                else {
+                    console.log(i)
+                }
             }
-        };
 
-        const sum = calcSum();
-        const sum2 = calcSum();
+        }
 
-        console.log(sum(3));
-        console.log(sum(5));
-        console.log(sum(20));
-
-        console.log(sum2(10));
-        console.log(sum2(15));
+        fizzBuzz(15)
 
 
 
 
-        /// Task 2
-        
-        
+        // Task 2
+
         // First Way
-        
-         /*function makeCounter(initialValue, step) {
-            let acc = initialValue;
 
-            function counter() {
-                return acc += step;
+        function findVowels(str) {
+            let count = 0;
+            const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+            for (let char of str.toLowerCase()) {
+                if (vowels.includes(char)) {
+                    count += 1;
+                }
             }
 
-            counter.reset = function () {
-                acc = initialValue;
-                return acc;
-            }
+            return count;
 
-            return counter;
         }
 
-        const fbCounter = makeCounter(0, 1);
-        const vkCounter = makeCounter(5, 2.5);
+        console.log(findVowels('Java Script'));
+        console.log(findVowels('why'));
 
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');
 
-        console.log(fbCounter.reset(), 'reset');
-
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');
-        console.log(fbCounter(), 'fbCounter');*/
-        
-        
-        
         // Second Way
-        
-        /*function makeCounter(initialValue, step) {
-            let acc = initialValue;
 
-            return {
-                next() {
-                    return acc += step;
-                },
-                reset() {
-                    acc = initialValue;
-                    return acc;
-                }
-            }
-
+        function findVowels2(str) {
+            const matched = str.match(/[aeiou]/gi);
+            return matched ? matched.length : 0;
         }
 
-
-        const fbCounter = makeCounter(0, 1);
-        const vkCounter = makeCounter(5, 2.5);
-
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
-
-        console.log(fbCounter.reset(), 'reset');
-
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
-        console.log(fbCounter.next(), 'fbCounter');
+        console.log(findVowels2('Java Script'));
+        console.log(findVowels2('why'));
 
 
-        console.log(vkCounter.next(), 'vkCounter');
-        console.log(vkCounter.next(), 'vkCounter');
-        console.log(vkCounter.next(), 'vkCounter');*/
-        
-        
-        
-        function makeCounter(initialValue, step) {
 
-            let acc = initialValue;
+        // Task 3
 
-            return {
-                next() {
-                    return acc += step;
-                },
-                reset() {
-                    acc = initialValue;
-                    return acc;
-                }
+        // First Way
+
+        function fibonacci(num) {
+            const result = [0, 1];
+
+            for (let i = 2; i <= num; i++) {
+
+                const prevNum1 = result[i - 1];
+                const prevNum2 = result[i - 2];
+                result.push(prevNum1 + prevNum2);
             }
 
-        };
+            return result[num];
+        }
 
-        const fbCounter = makeCounter(0, 1);
-        const vkCounter = makeCounter(5, 5);
-
-
-        const $fbContent = document.querySelector('.fb_content');
-        const $fbClearOut = document.querySelector('.fb_clear-out');
-        const $fbButton = document.querySelector('.fb');
-
-        $fbButton.addEventListener('click', () => {
-            $fbContent.innerHTML = fbCounter.next();
-        });
-
-        $fbClearOut.addEventListener('click', () => {
-            $fbContent.innerHTML = fbCounter.reset();
-        });
+        console.log(fibonacci(10))
 
 
+        // Second Way
 
-        const $vkContent = document.querySelector('.vk_content');
-        const $vkClearOut = document.querySelector('.vk_clear-out');
-        const $vkButton = document.querySelector('.vk');
+        function fibonacci2(num2) {
+            let a = 1,
+                b = 1;
 
-        $vkButton.addEventListener('click', () => {
-            $vkContent.innerHTML = vkCounter.next();
-        });
+            for (let i = 3; i <= num2; i++) {
+                [a, b] = [b, a + b];
+            }
+            return b;
+        }
 
-        $vkClearOut.addEventListener('click', () => {
-            $vkContent.innerHTML = vkCounter.reset();
-        });
+        console.log(fibonacci2(10));
 
 
-        
-        /// Task 3
-        
-        function isPalindrome(number) {
-    
-            const reversedNumber = Number(String(number).split("").reverse().join(""));
+        // Third Way 
 
-            if (number === reversedNumber) {
-                return number;
+        function fibonacci3(num3) {
+            if (num3 < 2) {
+                return num3;
             }
 
-            return isPalindrome(number + reversedNumber);
-
+            return fibonacci(num3 - 1) + fibonacci(num3 - 2);
         }
 
-        console.log(isPalindrome(96));
-        
-
-        /*function isPalindrome(number, reversedNumber) {
-            return number === reversedNumber;
-        }
-
-        function reverse(number) {
-            let numberAux = number;
-            let reversedNumber = 0;
-
-            while (numberAux > 0) {
-
-                let rightDigit = Math.floor(numberAux % 10);
-                reversedNumber = reversedNumber * 10 + rightDigit;
-                numberAux = Math.floor(numberAux / 10);
-            }
-            return reversedNumber;
-        }
-
-        function solve(number) {
-            const reversed = reverse(number);
-
-            if(isPalindrome(number, reversed)) {
-                return number;
-            } 
-            else {
-                return solve(reversed + number);
-            }
-        }
-        console.log(solve(96));*/
-
+        console.log(fibonacci2(10));
 
     </script>
 </body>
