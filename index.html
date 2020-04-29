@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_19</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+
+        // Task 1
+
+        function fizzBuzz(number) {
+
+            for (let i = 1; i <= number; i++) {
+
+                if (i % 3 === 0 && i % 5 === 0) {
+                    console.log('FizzBuzz');
+                }
+
+                else if (i % 3 === 0) {
+                    console.log('Fizz');
+                }
+
+                else if (i % 5 === 0) {
+                    console.log('Buzz');
+                }
+
+                else {
+                    console.log(i)
+                }
+            }
+
+        }
+
+        fizzBuzz(15)
+
+
+
+
+        // Task 2
+
+        // First Way
+
+        function findVowels(str) {
+            let count = 0;
+            const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+            for (let char of str.toLowerCase()) {
+                if (vowels.includes(char)) {
+                    count += 1;
+                }
+            }
+
+            return count;
+
+        }
+
+        console.log(findVowels('Java Script'));
+        console.log(findVowels('why'));
+
+
+        // Second Way
+
+        function findVowels2(str) {
+            const matched = str.match(/[aeiou]/gi);
+            return matched ? matched.length : 0;
+        }
+
+        console.log(findVowels2('Java Script'));
+        console.log(findVowels2('why'));
+
+
+
+        // Task 3
+
+        // First Way
+
+        function fibonacci(num) {
+            const result = [0, 1];
+
+            for (let i = 2; i <= num; i++) {
+
+                const prevNum1 = result[i - 1];
+                const prevNum2 = result[i - 2];
+                result.push(prevNum1 + prevNum2);
+            }
+
+            return result[num];
+        }
+
+        console.log(fibonacci(10))
+
+
+        // Second Way
+
+        function fibonacci2(num2) {
+            let a = 1,
+                b = 1;
+
+            for (let i = 3; i <= num2; i++) {
+                [a, b] = [b, a + b];
+            }
+            return b;
+        }
+
+        console.log(fibonacci2(10));
+
+
+        // Third Way 
+
+        function fibonacci3(num3) {
+            if (num3 < 2) {
+                return num3;
+            }
+
+            return fibonacci(num3 - 1) + fibonacci(num3 - 2);
+        }
+
+        console.log(fibonacci2(10));
+
+    </script>
+</body>
+
+</html>
