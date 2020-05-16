@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_21</title>
+</head>
+
+<body>
+
+    <script>
+        'use strict'
+
+        const $ul_listOfFilms = document.createElement('ul');
+        $ul_listOfFilms.className = 'list_of_films';
+        document.body.prepend($ul_listOfFilms);
+
+
+        function getFilms() {
+            return fetch('https://swapi.dev/api/films/');
+        }
+        //console.log(getFilms());
+
+
+        getFilms()
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                //console.log(data.results);
+
+                data.results.forEach(film => {
+
+                    const $li_filmName = document.createElement('li');
+                    $li_filmName.className = 'film_name';
+
+                    $li_filmName.innerHTML = film.title;
+                    //console.log(film.title)
+                    $ul_listOfFilms.append($li_filmName);
+
+                    const $ul_listOfShips = document.createElement('ul');
+                    $ul_listOfShips.className = 'list_of_ships';
+                    $ul_listOfShips.style = 'display:none';
+
+
+
+                    film.starships.forEach(starships => {
+                        //console.log(starships);
+
+                        const $li_shipName = document.createElement('li');
+                        $li_shipName.className = 'ship_name';
+
+                        fetch(starships)
+                            .then(response => {
+                                return response.json();
+                            })
+                            .then(data => {
+                                return $li_shipName.innerHTML = data.name;
+                            })
+
+
+                        $ul_listOfShips.append($li_shipName);
+                        $li_filmName.append($ul_listOfShips);
+
+
+                        $li_filmName.addEventListener('click', () => {
+                            return $ul_listOfShips.style = 'display:block';
+                        })
+                    })
+
+                })
+
+            })
+
+    </script>
+</body>
+
+</html>
