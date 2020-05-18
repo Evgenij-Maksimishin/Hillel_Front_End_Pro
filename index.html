@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_23</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        function Student(name, surName, yearBirth, marks) {
+            this.name = name;
+            this.surName = surName;
+            this.yearBirth = yearBirth;
+            this.marks = marks;
+            this.presence = new Array(25);
+            this.current = 0;
+        }
+
+        const student_test = new Student("Name", "SurName", 2000, [100, 100, 100, 100, 100]);
+
+
+        Student.prototype.present = function () {
+            if (this.current < this.presence.length) this.presence[this.current++] = true;
+        }
+
+        Student.prototype.absent = function () {
+            if (this.current < this.presence.length) this.presence[this.current++] = false;
+        }
+
+        student_test.present();
+        student_test.present();
+        student_test.present();
+        student_test.present();
+        student_test.absent()
+        console.log(student_test.presence);
+
+
+
+        Student.prototype.getYearOfBirth = function () {
+            return new Date().getFullYear() - this.yearBirth;
+        }
+
+        console.log(student_test.getYearOfBirth());
+
+
+
+        Student.prototype.getAverageMark = function () {
+            let count = 0,
+                sum = this.marks.reduce((a, b) => { ++count; return a + b; }, 0);
+            return count ? sum / count : 0;
+        }
+
+        console.log(student_test.getAverageMark());
+
+
+
+        Student.prototype.summary = function () {
+
+            let sum = 0;
+
+            this.presence.forEach(el => {
+                if (el === "true") {
+                    sum++
+                }
+            })
+
+            let res = sum / this.presence.length;
+
+            if (res > 0.9 && this.getAverageMark() > 90) {
+                return "Ути какой молодчинка!!!"
+            }
+            else if (res > 0.9 || this.getAverageMark() > 90) {
+                return "Норм, но можно лучше!!!"
+            }
+            else {
+                return "Редиска!!!"
+            }
+
+        }
+
+        console.log(student_test.summary());
+
+    </script>
+</body>
+
+</html>
