@@ -5,7 +5,7 @@ const babel = require('gulp-babel');
 const rename = require('gulp-rename');
 let minifyCss = require('gulp-minify-css');
 
-var paths = {
+let paths = {
   html: ['src/index.html'],
   css: ['src/less/*.less'],
   script: ['src/js/*.js']
