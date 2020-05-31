@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home_work_25</title>
+    <style>
+        form {
+            text-align: center;
+        }
+
+        .toDo_list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .text_section {
+            text-align: center;
+        }
+
+        .list_section {
+            margin-top: 30px;
+
+        }
+
+        .list_section:first-child {
+            margin-top: 5px;
+        }
+
+        span {
+            width: 200px;
+        }
+
+        .line-through {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--<form>
+        <input type="text" name="title" placeholder="Note title"><br>
+        <textarea name="note" rows="10" placeholder="Note text"></textarea><br>
+        <button type="submit">Save</button>
+        <button type="reset">Resset</button>
+    </form>
+
+    <div class="notes-list"></div>-->
+
+    <form>
+        <input name="inputWhatToDo" placeholder="Enter your text"></input>
+        <button type="submit">Add</button>
+    </form>
+    <div class="toDo_list"></div>
+
+
+    <script>
+        'use strict'
+
+        // First Way by Lesson
+
+        /*let countNode = 1;
+
+       document.forms[0].addEventListener('submit', e => {
+           e.preventDefault();
+
+           //const { target: { elements: { title: { value: titleValue }, note: { value: noteValue } } } } = e;
+
+           /*const {
+               target: {
+                   elements: {
+                       title: {
+                           value: titleValue
+                       },
+                       note: {
+                           value: noteValue
+                       }
+                   }
+               }
+           } = e; ////*
+
+           //console.log(titleValue, nodeValue);
+
+           const title = e.target.elements.title.value;
+           const note = e.target.elements.note.value;
+
+           console.log(title, note)
+           //console.dir(e.target)
+
+
+           localStorage['Note' + countNode] = `${title}, ${note}`;
+           countNode++;
+       })*/
+
+
+        // Second Way by Lesson
+
+        /*document.forms[0].addEventListener('submit', e => {
+             e.preventDefault();
+ 
+             if (localStorage.storeNotes) {
+                 printNotes(JSON.parse(localStorage.storeNotes));
+             }
+ 
+             const notes = localStorage.storeNotes ? JSON.parse(localStorage.storeNotes) : [];
+ 
+             const title = e.target.elements.title.value;
+             const note = e.target.elements.note.value;
+ 
+             //notes.push({ title, note });
+ 
+             notes.push({
+                 title,
+                 note
+             });
+ 
+             localStorage.storeNotes = JSON.stringify(notes);
+             printNotes(notes);
+ 
+             e.target.reset();
+         });
+ 
+ 
+         function printNotes(notes) {
+             let notesString = '';
+ 
+             notes.forEach(note => {
+                 notesString += `<div>
+                 <h4>Note title: ${note.title}</h4>
+                 <p>Note text: ${note.title}</p>
+                 </div>`
+             });
+ 
+             document.querySelector('.notes-list').innerHTML = notesString;
+         }*/
+
+
+
+        if (localStorage.storedNotes) {
+            printTasks(JSON.parse(localStorage.storedNotes))
+        };
+
+        document.forms[0].addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const arrayToDoList = localStorage.storedNotes ? JSON.parse(localStorage.storedNotes) : [];
+            const inputWhatToDo = e.target.elements.inputWhatToDo.value;
+
+            arrayToDoList.push({
+                id: Date.now(),
+                inputWhatToDo,
+                status: false
+            });
+
+            localStorage.storedNotes = JSON.stringify(arrayToDoList);
+
+            printTasks(arrayToDoList);
+            //console.log(arrayToDoList);
+
+            e.target.reset();
+        })
+
+        function printTasks(arrayToDoList) {
+            //console.log(arrayToDoList);
+
+            let sectionOfToDoList = '';
+
+            arrayToDoList.forEach(({ id, inputWhatToDo, status }) => {
+
+                sectionOfToDoList += `<div class="list_section">`;
+                sectionOfToDoList += `<div class="text_section">`;
+
+                if (status) {
+                    sectionOfToDoList += `<span class="line-through">${inputWhatToDo}</span></div>`
+                }
+
+                else {
+                    sectionOfToDoList += `<span>${inputWhatToDo}</span></div>`
+                }
+
+                sectionOfToDoList += `<button data-action="Fulfiled" id="${id}">Fulfiled</button>
+                <button data-action="Delete" id="${id}">Delete</button>`
+                sectionOfToDoList += '</div>';
+            })
+
+            document.querySelector('.toDo_list').innerHTML = sectionOfToDoList;
+
+        }
+
+
+        const toDoList = document.querySelector('.toDo_list');
+
+        toDoList.addEventListener('click', e => {
+            //console.log(toDoList);
+            //console.log(e.target);
+            //console.log(e.target.dataset);
+
+            const inputList = JSON.parse(localStorage.storedNotes);
+
+            inputList.forEach((el, i) => {
+
+                if (el.id === Number(e.target.id)) {
+
+                    if (e.target.dataset.action === 'Fulfiled') {
+
+                        e.target.closest('.list_section')
+                            .querySelector('.text_section > span')
+                            .classList.toggle('line-through');
+
+                        if (el.status) {
+                            el.status = false;
+                        }
+                        else {
+                            el.status = true;
+                        }
+
+                        localStorage.storedNotes = JSON.stringify(inputList);
+
+                    } else if (e.target.dataset.action === 'Delete') {
+
+                        inputList.splice(i, 1);
+
+                        localStorage.storedNotes = JSON.stringify(inputList);
+
+                        printTasks(inputList);
+                        //console.log(inputList);
+
+                    }
+                }
+            })
+
+        });
+
+    </script>
+</body>
+
+</html>
